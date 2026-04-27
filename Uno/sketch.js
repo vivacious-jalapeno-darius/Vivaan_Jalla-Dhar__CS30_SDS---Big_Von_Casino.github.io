@@ -1,7 +1,13 @@
 // Uno
 
+let cardColourOptions = ["red", "blue", "green", "yellow", "wild"];
+let cardColour;
+
+
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  cardColour = random(cardColourOptions);
 }
 
 function draw() {
@@ -20,28 +26,35 @@ class Card {
     this.type = type;
   }
 
-  redCard() {
+  // redCard() {
+  //   if (cardColour === cardColourOptions[0]) {
+  //     console.log("red");
+  //   }
+  // }
 
-  }
+  // blueCard() {
+  //   if (cardColour === cardColourOptions[1]) {
+  //     console.log("blue");
+  //   }
+  // }
 
-  blueCard() {
+  // greenCard() {
+  //   if (cardColour === cardColourOptions[2]) {
+  //     console.log("green");
+  //   }
+  // }
 
-  }
+  // yellowCard() {
+  //   if (cardColour === cardColourOptions[3]) {
+  //     console.log("yellow");
+  //   }
+  // }
 
-  greenCard() {
-
-  }
-
-  yellowCard() {
-
-  }
-
-  blackCard() {
-
-  }
+  // wildCard() {
+  //   if (cardColour === cardColourOptions[4]) {
+  //     console.log("wild");
+  //   }
+  // }
 
 }
-
-
-
 
