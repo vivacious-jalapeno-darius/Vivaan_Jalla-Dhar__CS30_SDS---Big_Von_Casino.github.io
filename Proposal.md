@@ -5,6 +5,7 @@ It is nice to keep money, but it is even better when someone gives you money. Wh
 
 
 ## Needs to have
+- **A money variable that is accessible across every game (using local storage)**
 - An HTML main page
 - At least 3 casino minigames
   - At least 1 multiplayer game (using p5.party)
@@ -20,16 +21,25 @@ It is nice to keep money, but it is even better when someone gives you money. Wh
       - Play only until 1 player wins
   - My GridBased Game
   - Roulet
-      - A game with a circle that spins on the player's click
+      - A game with a wheel that spins on the player's click
+      - There will be a pointer at the top of the circle, not attached to the circle
       - Before starting, the player can choose how many sections they want the cicle to be in (always going to be cut like pie)
         - Based on the amount of quadrents, the bet multiplier will increase (2 sections = low bet multiplier amount, 100 sections = high bet multiplier amount)
+      - Then the player will bet how much money they want
+      - The player will pick a number between 1 and the # of sections
+      - After pressing a "spin" button after selecting the random number, the wheel will spin very fast, and later will begin to slow down
+      - Once the circle comes to a complete stop, the number under the pointer is the winner
+        - If the number is what the player selected, then the player will win the bet * the cash multiplier amount
+        - Else, the player will lose all the money they bet
+          - Unlike the GridAssignment game, the cash will never get into the negatives
+          - Hence, once the player is broke, they can no longer play that game and will need to play other games to earn that money back to be able to play
 - Background music that loops 
 - Buttons on main page that lead to each game
 - A home button in each game that leads back to the main page 
-- A money variable that is acceseable across every game (using local storage)
 
 
 ## Nice to have
+- A bar and grill (one thing) for players to spend their money that they earned to get some food and drinks
 - Add monopoly (multiplayer)
 - A map button in each game, when clicked will open a top view of the casino (find random image online) (map). Then put pins on the map that represent each game. When either pin is pressed, then it will directly teleport to the game
 - When the user will input their address, it will make a pin on the world map that represents where they are in the world. On the pin will be a plane that will go to Vegas. When the user presses the button that says 'Fly to Vegas', the plane will fly from their location and land in Vegas. The visuals will be based on the Flight Radar app.
