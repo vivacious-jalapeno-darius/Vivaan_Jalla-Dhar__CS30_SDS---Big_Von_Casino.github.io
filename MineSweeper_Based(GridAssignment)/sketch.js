@@ -91,7 +91,7 @@ let font;
 
 
 // ----- MAKE BETS SCREEN ----- \\
-let cash = 100;
+let cash = getItem('casino_cash');
 let cashDisplay;
 
 // minimum and maximum betting amount
@@ -498,6 +498,7 @@ function revealMysteryBox(mouseXpos, mouseYpos) {
       let winnings = betPlaced.value * moneyMultiplierValue;
       newCashValue = cash + winnings;
       cash += abs(newCashValue);
+      storeItem('casino_cash', cash);
       moneyMultiplierValue *= MONEY_MULTIPLIER;
       prizeCollectedSound.play();
     } 
@@ -513,6 +514,7 @@ function revealMysteryBox(mouseXpos, mouseYpos) {
         cash -= newCashValue;
       }
       
+      storeItem('casino_cash', cash);
       gameStatus = "lose";
       cashOut.button.hide();
       lossStartTime = millis();
