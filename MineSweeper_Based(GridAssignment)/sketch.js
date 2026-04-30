@@ -91,11 +91,11 @@ let font;
 
 
 // ----- MAKE BETS SCREEN ----- \\
-let cash = getItem('casino_cash');
+let cash;
 let cashDisplay;
 
 // minimum and maximum betting amount
-let maximumBet = cash;
+let maximumBet;
 
 
 // ----- GAMBLING ----- \\
@@ -206,6 +206,9 @@ function restateVariables() {
 
   subTitleSize = (width + height) / 350;
 
+  // ----- LOCAL STORAGE CASH ----- \\
+  cash = getItem('casino_cash');
+
   // title and subtitle y position
   titleypos = height * (2/5);
   subTitleypos = height * (3/5);
@@ -228,8 +231,9 @@ function restateVariables() {
   // ----- BET SLIDER ----- \\
   betSlider.size = width / 3;
   betSlider.xpos = screenCenterx-betSlider.size/2;
-  betSlider.ypos = height/2;
-  
+  betSlider.ypos = height/2;  
+
+  maximumBet = cash;
 
   // ----- BET TEXT ----- \\
   betPlaced.ypos = height * (2/5);
