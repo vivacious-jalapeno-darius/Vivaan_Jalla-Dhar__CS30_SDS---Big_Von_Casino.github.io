@@ -21,7 +21,7 @@ It is nice to keep money, but it is even better when someone gives you money. Wh
       - Play only until 1 player wins
   - My GridBased Game
   - Roulet
-      - A game with a wheel that spins on the player's click
+      - A game with a wheel that spins on the player's click (using **translate** and **rotate**)
       - There will be a pointer at the top of the circle, not attached to the circle
       - Before starting, the player can choose how many sections they want the cicle to be in (always going to be cut like pie)
         - Based on the amount of quadrents, the bet multiplier will increase (2 sections = low bet multiplier amount, 100 sections = high bet multiplier amount)
