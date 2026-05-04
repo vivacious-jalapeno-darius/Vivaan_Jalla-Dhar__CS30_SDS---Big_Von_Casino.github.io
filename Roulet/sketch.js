@@ -1,7 +1,12 @@
-// Roulet
+// Roulette
 
-let sections = 5;
-let angles = 360/sections;
+let rouletteGreen = "#46b96d";
+let casinoRed;
+let casinoGold;
+let rouletteBlack = "black";
+
+let sections;
+let angles;
 let colors = [];
 let labelSize = 25;
 let textColour = "white";
@@ -16,38 +21,62 @@ let gameStatus = "start";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // noStroke();
-  set_pie_colors();
-  noLoop(); // Run once and stop
+
+  casinoRed = getItem('theme_red');
+  casinoGold = getItem('theme_gold');
+  
+  betInput = createInput();
+  betInput.size(200, 50);
+  betInput.position(width * (3/4) - 100, height * (2/5) - 25); 
+
+  amountOfSections = createInput();
+  amountOfSections.size(200, 50);
+  amountOfSections.position(width * (3/4) - 100, height * (7/10) - 25); 
 }
 
 function set_pie_colors() {
-  for (let i=0; i < sections; i++) {
-    let red = floor(random(10,255));
-    let green = floor(random(10,255));
-    let blue = floor(random(10,255));
-    colors.push([red, green, blue]);
+  for (let i = 0; i < sections; i++) {
+    if (i === 0) {
+      colors.push(rouletteGreen);
+    }
+    else if (i % 2 === 0) {
+      colors.push(casinoRed);
+    }
+    else {
+      colors.push(rouletteBlack);
+    }
   }
 }
 
 function draw() {
   background(0);
-  // colors = [];
-  // set_pie_colors()
+  
+  
   if (gameStatus === "start") {
-    startScreen();
-  }
+    titleText();
+  } 
   else if (gameStatus === "gamble") {
+    betInput.hide();
+    amountOfSections.hide();
+    background(casinoGold);
+    
     pieChart(width / 2, height / 2, 350, sections);
   }
- 
 }
 
-function startScreen() {
+function keyPressed() {
+  if (keyCode === 13 && gameStatus === "start" && amountOfSections.value() > 0) {
+    sections = int(amountOfSections.value());
+    angles = 360 / sections; 
+    set_pie_colors();
+    gameStatus = "gamble";
+  }
+}
+function titleText() {
   textAlign(CENTER, CENTER);
   textSize(150);
   fill(textColour);
-  text("Roulet", width/4, height/2);
+  text("Roulette", width/4, height/2);
 
   textSize(50);
   fill(textColour);
@@ -56,9 +85,6 @@ function startScreen() {
   textSize(50);
   fill(textColour);
   text("# of sections", width*(3/4), height*(3/5));
-
-  input();
-  
 }
 
 function input() {
@@ -84,15 +110,6 @@ function pieChart(xCenter, yCenter, diameter, data) {
       lastAngle,
       lastAngle + radians(angles)
     );
-    stroke(1);
-    fill(255,255,255,240);
-    textSize(labelSize);
-    // let wText = textWidth(String(angles));
-    // let hText = textAscent()-textDescent(); 
-    // // console.log(wText);
-    // text(angles,
-    //   width/2+cos(lastAngle+radians(angles/2))*diameter*(rlabel/2)-wText/2,
-    //   height/2+sin(lastAngle+radians(angles/2))*diameter*(rlabel/2)+hText/2);
-    // lastAngle += radians(angles);
+    lastAngle += radians(angles);
   }
-}
+} 
