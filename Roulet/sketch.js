@@ -5,6 +5,7 @@ let casinoRed;
 let casinoGold;
 let rouletteBlack = "black";
 
+let backgroundCircleDiameter = 375;
 let sections;
 let angles;
 let colors = [];
@@ -99,6 +100,8 @@ function input() {
 
 function pieChart(xCenter, yCenter, diameter, data) {
   let lastAngle = 0;
+  fill(rouletteBlack);
+  circle(width/2, height/2, backgroundCircleDiameter);
   for (let i = 0; i < data; i++) {
     noStroke();
     fill(colors[i]);
@@ -112,4 +115,7 @@ function pieChart(xCenter, yCenter, diameter, data) {
     );
     lastAngle += radians(angles);
   }
+  
+
+  
 } 
