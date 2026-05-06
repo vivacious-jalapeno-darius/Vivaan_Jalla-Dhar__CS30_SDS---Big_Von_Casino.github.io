@@ -14,10 +14,18 @@ let textColour = "white";
 let betInput;
 let amountOfSections;
 
+let tableBrown = '#5b3c1f';
+
 
 // let rlabel = 1.1;
 
 let gameStatus = "start";
+
+let pointer;
+
+
+
+
 
 
 function setup() {
@@ -33,7 +41,10 @@ function setup() {
   amountOfSections = createInput();
   amountOfSections.size(200, 50);
   amountOfSections.position(width * (3/4) - 100, height * (7/10) - 25); 
+
 }
+
+
 
 function set_pie_colors() {
   for (let i = 0; i < sections; i++) {
@@ -49,21 +60,27 @@ function set_pie_colors() {
   }
 }
 
+
+
 function draw() {
-  background(0);
+  
   
   
   if (gameStatus === "start") {
+    background(0);
     titleText();
   } 
   else if (gameStatus === "gamble") {
     betInput.hide();
     amountOfSections.hide();
-    background(casinoGold);
+    background(tableBrown);
     
     pieChart(width / 2, height / 2, 350, sections);
+    createPointer(width / 2, height / 2, backgroundCircleDiameter, 20, 40);
   }
 }
+
+
 
 function keyPressed() {
   if (keyCode === 13 && gameStatus === "start" && amountOfSections.value() > 0) {
@@ -73,6 +90,9 @@ function keyPressed() {
     gameStatus = "gamble";
   }
 }
+
+
+
 function titleText() {
   textAlign(CENTER, CENTER);
   textSize(150);
@@ -88,6 +108,8 @@ function titleText() {
   text("# of sections", width*(3/4), height*(3/5));
 }
 
+
+
 function input() {
   betInput = createInput();
   betInput.size(200, 50);
@@ -97,6 +119,9 @@ function input() {
   amountOfSections.size(200, 50);
   amountOfSections.position(width*(3/4) - 100, height*(7/10) - 25); 
 }
+
+
+
 
 function pieChart(xCenter, yCenter, diameter, data) {
   let lastAngle = 0;
@@ -119,3 +144,18 @@ function pieChart(xCenter, yCenter, diameter, data) {
 
   
 } 
+
+
+function createPointer(xCenter, yCenter, diameter, base, height) {
+  pointer = {
+    bottomX: xCenter,
+    bottomY: yCenter - diameter/2.3,
+    leftX: xCenter - base/2,
+    leftY: yCenter - diameter/2 - height,
+    rightX: xCenter + base/2,
+    rightY: yCenter - diameter/2 - height
+  };
+
+  fill('white');
+  triangle(pointer.bottomX, pointer.bottomY, pointer.leftX, pointer.leftY, pointer.rightX, pointer.rightY);
+}
